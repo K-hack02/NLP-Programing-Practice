@@ -1,0 +1,24 @@
+from reviews import counter, training_counts
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Inserty a sentence giving a review below:
+review = ""
+review_counts = counter.transform([review])
+
+classifier = MultinomialNB()
+training_labels = [0] * 1000 + [1] * 1000
+
+classifier.fit(training_counts, training_labels)
+
+neg = (classifier.predict_proba(review_counts)[0][0] * 100).round()
+pos = (classifier.predict_proba(review_counts)[0][1] * 100).round()
+
+if pos > 50:
+  print("This sentence is positive.")
+elif neg > 50:
+  print("This sentence is negative.")
+else:
+  print("The sentence can't be determined as negative or positive.")
+  
+print("\nThe probability that your review was negative was {0}% and the probability it was positive was {1}%.".format(neg, pos))
