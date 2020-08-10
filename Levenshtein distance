@@ -1,14 +1,16 @@
 import nltk
 from nltk.metrics import edit_distance
 
+# The differences between string2 compared to string1
 def print_levenshtein(string1, string2):
   print("The Levenshtein distance from '{0}' to '{1}' is {2}!".format(string1, string2, edit_distance(string1, string2)))
 
+# Inserty two words below:
+print_levenshtein("", "")
 
-print_levenshtein("fart", "target")
-
-three_away = "nudes"
-two_away = "bunk"
+#Examples: 
+three_away = "dudes"
+two_away = "dunk"
 
 print_levenshtein("code", three_away)
 print_levenshtein("chunk", two_away)
